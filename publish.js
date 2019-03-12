@@ -83,11 +83,11 @@ function needsSignature(doclet) {
             }
         }
     }
-    // and namespaces that are functions get a signature (but finding them is a		
-    // bit messy)		
-    else if (doclet.kind === 'namespace' && doclet.meta && doclet.meta.code &&		
-        doclet.meta.code.type && doclet.meta.code.type.match(/[Ff]unction/)) {		
-        needsSig = true;		
+    // and namespaces that are functions get a signature (but finding them is a
+    // bit messy)
+    else if (doclet.kind === 'namespace' && doclet.meta && doclet.meta.code &&
+        doclet.meta.code.type && doclet.meta.code.type.match(/[Ff]unction/)) {
+        needsSig = true;
     }
 
     return needsSig;
@@ -423,7 +423,7 @@ function linktoExternal(longName, name) {
  */
 
 function buildNav(members) {
-    var nav = '<h2><a href="index.html">Home</a></h2>';
+    var nav = '<h2><a href="index.html">Summary</a></h2>';
     var seen = {};
     var seenTutorials = {};
     var docdash = env && env.conf && env.conf.docdash || {};
@@ -700,7 +700,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var files = find({kind: 'file'});
     var packages = find({kind: 'package'});
 
-    generate('', 'Home',
+    generate('', 'Summary',
         packages.concat(
             [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
         ).concat(files),

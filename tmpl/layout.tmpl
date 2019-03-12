@@ -29,6 +29,8 @@
 </head>
 <body>
 
+<?js= this.partial('wink-nav.tmpl') ?>
+
 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
 <label for="nav-trigger" class="navicon-button x">
   <div class="navicon"></div>
@@ -44,12 +46,12 @@
 </nav>
 
 <div id="main">
-    <?js if (title != 'Home') { ?>
+    <?js if (title != 'Summary') { ?>
     <h1 class="page-title"><?js= title ?></h1>
     <?js } ?>
 
     <?js= content ?>
-    
+
     <?js if (env.conf.docdash.disqus) { ?>
     <div id="disqus_thread"></div>
     <script>
