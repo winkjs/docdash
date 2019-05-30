@@ -12,6 +12,11 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
+  window.onload = function () {
+      console.log(1);
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -76,6 +81,7 @@ nav {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
+  display: none;
 }
 
 .gitter-open-chat-button:hover {
