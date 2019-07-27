@@ -70,6 +70,47 @@ See the config file for the [fixtures](fixtures/fixtures.conf.json) or the sampl
 }
 ```
 
+```
+{
+  "opts": {
+    "encoding": "utf8",
+    "readme": "README.md",
+    "template": "../wink-docdash/",
+    "destination": "docs",
+    "tutorials": "tutorials"
+  },
+  "plugins": ["plugins/markdown"],
+  "docdash": {
+    "meta": {
+      "title": "wink-statistics - Wink JS"
+    },
+    "menu":{
+            "Github":{
+                "href":"https://github.com/winkjs/wink-statistics",
+                "target":"_blank"
+            },
+            "Showcase":{
+                "href":"https://github.com/winkjs/wink-statistics",
+                "target":"_blank",
+                "class": "btn"
+            },
+            "Demos": [
+              {"One": {
+                "href":"https://github.com/winkjs/wink-statistics",
+                "target":"_blank"
+              }},
+              {"Two": {
+                "href":"https://github.com/winkjs/wink-statistics",
+                "target":"_blank"
+              }}
+            ]
+        }
+    }
+}
+```
+
+### Extra f
+
 ## Options
 Docdash supports the following options:
 

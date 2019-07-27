@@ -429,16 +429,36 @@ function buildNav(members) {
     var docdash = env && env.conf && env.conf.docdash || {};
     if(docdash.menu){
         for(var menu in docdash.menu){
+          if (Array.isArray(docdash.menu[menu])) {
+            nav += '<h3>' + menu + '</h3><ul>';
+
+            for (var submenu in docdash.menu[menu]) {
+              var submenuItem = docdash.menu[menu][submenu]
+              var linkName = Object.keys(submenuItem)[0];
+              var linkObj = submenuItem[linkName]
+
+              nav += '<a ';
+              //add attributes
+              for(var attr in linkObj){
+                  nav += attr+'="' + linkObj[attr] + '" ';
+              }
+              nav += '>' + linkName + '</a>';
+
+            }
+
+            nav += '</ul>';
+          } else {
             nav += '<h2><a ';
             //add attributes
             for(var attr in docdash.menu[menu]){
                 nav += attr+'="' + docdash.menu[menu][attr] + '" ';
             }
             nav += '>' + menu + '</a></h2>';
+          }
         }
     }
     var defaultOrder = [
-        'Classes', 'Modules', 'Externals', 'Events', 'Namespaces', 'Mixins', 'Tutorials', 'Interfaces'
+        'Tutorials', 'Classes', 'Modules', 'Externals', 'Events', 'Namespaces', 'Mixins', 'Interfaces'
     ];
     var order = docdash.sectionOrder || defaultOrder;
     var sections = {
@@ -749,7 +769,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, filename) {
         var tutorialData = {
-            title: title,
+            title: '', // We don't want to show this title
             header: tutorial.title,
             content: tutorial.parse(),
             children: tutorial.children

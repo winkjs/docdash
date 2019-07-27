@@ -31,39 +31,36 @@
 
 <?js= this.partial('wink-nav.tmpl') ?>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
+<div class="content-container">
+  <div class="main-container">
+    <div id="main">
+        <?js if (title != 'Summary') { ?>
+        <h1 class="page-title"><?js= title ?></h1>
+        <?js } ?>
 
-<label for="nav-trigger" class="overlay"></label>
+        <?js= content ?>
 
-<nav <?js if (env.conf.docdash.wrap) { ?>class="wrap"<?js } ?>>
-    <?js if (env.conf.docdash.search) { ?>
-    <input type="text" id="nav-search" placeholder="Search" />
-    <?js } ?>
-    <?js= this.nav ?>
-</nav>
+        <?js if (env.conf.docdash.disqus) { ?>
+        <div id="disqus_thread"></div>
+        <script>
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//<?js= env.conf.docdash.disqus ?>.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <?js } ?>
+    </div>
+  </div>
 
-<div id="main">
-    <?js if (title != 'Summary') { ?>
-    <h1 class="page-title"><?js= title ?></h1>
-    <?js } ?>
-
-    <?js= content ?>
-
-    <?js if (env.conf.docdash.disqus) { ?>
-    <div id="disqus_thread"></div>
-    <script>
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = '//<?js= env.conf.docdash.disqus ?>.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <?js } ?>
+  <nav <?js if (env.conf.docdash.wrap) { ?>class="wrap"<?js } ?> id="side-nav">
+      <?js if (env.conf.docdash.search) { ?>
+      <input type="text" id="nav-search" placeholder="Search" />
+      <?js } ?>
+      <?js= this.nav ?>
+  </nav>
 </div>
 
 <br class="clear">
@@ -96,5 +93,20 @@
         }
     }
 } ?>
+
+<script src="https://embed.runkit.com"></script>
+<script type="text/javascript">
+  var els = document.getElementsByClassName("runkit");
+
+  Array.prototype.forEach.call(els, function(el) {
+    // Do stuff here
+    var source = el.innerHTML;
+    el.innerHTML = '';
+    var n = RunKit.createNotebook( {
+      element: el,
+      source: source
+    } );
+  });
+</script>
 </body>
 </html>
